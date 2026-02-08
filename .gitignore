@@ -1,0 +1,26 @@
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---- Virtual Environment ----
+env/
+.venv/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Geospatial Data ----
+data/
+*.tif
+*.tiff
+*.SAFE
+*.zip
+
+# ---- Outputs ----
+outputs/
+
+# ---- OS / Editor ----
+.DS_Store
+.vscode/
