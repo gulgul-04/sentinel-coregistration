@@ -1,5 +1,5 @@
 import os
-from scripts import  geo, coreg
+from scripts import  geo, coreg, viz
 
 def main():
 
@@ -26,13 +26,18 @@ def main():
             )
 
         #step2 - coregister sentinel-1 image to clipped sentinel-2 image
-        coreg.pixel_matching(
-            master_path=s2_clipped_tif,
-            slave_path=s1_vv_tif,
-            output_path=s1_coreg_tif
-        )
+        if os.path.exists(s1_coreg_tif):
+            print(f"\nSkipping Coregistration: Found {s1_coreg_tif}")
+        else:
+            print("\n--- Starting Coregistration ---")
+            coreg.match_pixels(s2_clipped_tif, s1_vv_tif, s1_coreg_tif)
+            print("\nPipeline executed successfully! \n All preproccessing tasks completed and outputs saved.")
 
-        print("\nPipeline executed successfully! \n All preproccessing tasks completed and outputs saved.")
+        #step3 - viswualize coregistration results
+        viz.plot_alignment(
+            optical_path=s2_clipped_tif,
+            radar_path=s1_coreg_tif
+        )
 
     except Exception as e:
         print(f"\nAn error occurred during pipeline execution: {e}")
