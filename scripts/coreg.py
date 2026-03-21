@@ -23,7 +23,7 @@ def pixel_matching(master_path: str, slave_path: str, output_path: str):
 
         #step 3: perform coregistration alignment
         pbar.set_description("Aligning Pixels (Nearest Neighbor Resampling)...")
-        aligned_da = slave_da.rio.reprject_match(master_da, resampling=Resampling.nearest)
+        aligned_da = slave_da.rio.reproject_match(master_da, resampling=Resampling.nearest)
         pbar.update(1)
 
         #step 4: save output

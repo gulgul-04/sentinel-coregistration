@@ -52,7 +52,7 @@ def clip_raster_to_aoi(raw_raster_path: str, aoi_file_path: str, output_path: st
     #clip image and drop empty space outside the AOI
     clipped_raster = raw_raster.rio.clip(aoi_gdf.geometry, aoi_gdf.crs, drop=True)
 
-    os.amkedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     print(f"Saving clipped image to: {output_path}")
     clipped_raster.rio.to_raster(output_path)
 
